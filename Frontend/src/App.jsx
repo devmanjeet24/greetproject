@@ -5,13 +5,18 @@ const App = () => {
   const [message, setMessage] = useState("");
 
   const fetchGreeting = async () => {
+
+    // const baseurl = "http://localhost:5000"
+    const baseurl = "https://greetproject-backend.onrender.com"
+
     if (!name) {
       setMessage("Please enter a name.");
       return;
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/greet?name=${name}`);
+      // const response = await fetch(`http://localhost:5000/api/greet?name=${name}`);
+      const response = await fetch(`${baseurl}/api/greet?name=${name}`);
       const data = await response.json();
       setMessage(data.message || data.error);
     } catch (error) {
